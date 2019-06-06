@@ -78,7 +78,7 @@
 
         <!-- Content - это Grid из трёх колонок -->
         <div class="row">
-            <div class="col-lg-9">
+            <div class="col-sm-8">
 
                 {% block content %}
 
@@ -92,9 +92,11 @@
             </div>
 
             <div class="col-sm">
+                <center>
                     <a href="{{ url_for('posts.create_post') }}"
                        class="btn btn-primary btn-sm" role="button"
                        aria-pressed="true"> + Написать новый пост</a>
+                </center>
                 <hr class="my-4">
             </div>
 
