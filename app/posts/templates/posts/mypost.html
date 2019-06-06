@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    {{ mypost.title }}
+{% endblock %}
+
+
+{% block content_title %}
+    {{ mypost.title }}
+{% endblock %}
+
+
+{% block content %}
+    {{ mypost.tBody }}
+
+    <div class="tags">
+
+        {% for t in mytags %}
+            <a href="{{ url_for('posts.mytag', slug=t.slug) }}" class="badge badge-primary">{{ t.name }}</a>
+        {% endfor %}
+
+    </div>
+
+{% endblock %}

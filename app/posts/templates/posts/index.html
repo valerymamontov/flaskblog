@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Мои посты
+{% endblock %}
+
+
+{% block content_title %}
+    Посмотри, что я запостил:
+{% endblock %}
+
+
+{% block content %}
+
+    {% for p in all_posts %}
+        <p>
+            <a href="{{ url_for('posts.mypost', slug=p.slug) }}">{{ p.title }}</a>
+        </p>
+    {% endfor %}
+
+    выводится список постов<br>
+    Пост о чем-то важном<br>
+    Всякая всячина
+<br><br><br>
+<nav aria-label="...">
+  <ul class="pagination pagination-sm">
+    <li class="page-item disabled">
+      <span class="page-link">Предыдущая</span>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item active" aria-current="page">
+      <span class="page-link">
+        2
+        <span class="sr-only">(current)</span>
+      </span>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Следущая</a>
+    </li>
+  </ul>
+</nav>
+{% endblock %}
+
