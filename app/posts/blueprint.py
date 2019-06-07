@@ -39,11 +39,18 @@ def index():
 
     q = request.args.get('q')
     if q:
-        posts = Post.query.filter(Post.title.contains(q) | Post.tBody.contains(q)).all()
+        posts = Post.query.filter(Post.title.contains(q) | Post.tBody.contains(q))
     else:
         posts = Post.query.order_by(Post.dCreated.desc())
 
-    return render_template('posts/index.html', all_posts=posts)
+    page = request.args.get('page')
+    if page and page.isdigit():
+        page = int(page)
+    else:
+        page = 1
+    pages = posts.paginate(page=page, per_page=5)
+
+    return render_template('posts/index.html', all_posts=posts, pages=pages)
 
 
 @posts.route('/<slug>')
