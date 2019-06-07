@@ -38,7 +38,9 @@
           {% if page == pages.page %}
             class="page-item active"
           {% endif %}
-        ><a class="page-link" href="./?page={{ page }}">{{ page }}</a></li>
+        ><a class="page-link" href="./?page={{ page }}">{{ page }}
+            <span class="sr-only">(current)</span>
+        </a></li>
       {% endfor %}
 
     <li
