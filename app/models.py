@@ -5,8 +5,13 @@ import random
 
 
 def func_slugify(s):
-    pattern = r'[^\w+]'
-    return re.sub(pattern, '-', s.lower())
+    return s
+    # pattern = r'[^\w+]'
+    # slug = re.sub(pattern, '-', s)
+    # return slug
+
+    # return s
+    # return re.sub(pattern, '-', s.lower())
     # другая реализация логики:
     # return '{0}-{1}'.format(
     #     re.sub(pattern, '-', s.lower()),
@@ -24,7 +29,7 @@ class Post(db.Model):
     title = db.Column(db.String(140))
     slug = db.Column(db.String(140), unique=True)
     tBody = db.Column(db.Text)
-    dCreated = db.Column(db.DateTime, default=datetime.strftime(datetime.now(), "%Y.%m.%d %H:%M:%S"))
+    dCreated = db.Column(db.DateTime, default=datetime.now())
 
     tags = db.relationship(
         'Tag',
@@ -38,11 +43,13 @@ class Post(db.Model):
 
     def func_generate_slug(self):
         if self.title:
-            if self.dCreated:
-                self.slug = func_slugify(self.title) + '-' + func_slugify(str(self.dCreated))
+            self.slug = func_slugify(self.title)
+
+            # if self.dCreated:
+            #     self.slug = func_slugify(self.title.lower()) + '-' + func_slugify(str(self.dCreated))
 
     def __repr__(self):
-        return '<Post id: {}, title: {}>'.format(self.id, self.title)
+        return '{}'.format(self.title)
 
 class Tag(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -54,4 +61,4 @@ class Tag(db.Model):
         self.slug = func_slugify(self.name)
 
     def __repr__(self):
-        return '<Tag id: {}, name: {}>'.format(self.id, self.name)
+        return '{}'.format(self.name)
