@@ -66,19 +66,21 @@
         <br>
 
         <!-- Greeting -->
-        <div>
+        <div class="ml-5">
             <h3>
                 {% block content_title %}
 
                 {% endblock %}
             </h3>
+            <hr>
         </div>
 
-        <hr class="my-4">
+
 
         <!-- Content - это Grid из трёх колонок -->
         <div class="row">
-            <div class="col-sm-8">
+<!--            <div class="col-sm-offset-2 col-sm-8">-->
+            <div class="col-sm-8 ml-5">
 
                 {% block content %}
 
